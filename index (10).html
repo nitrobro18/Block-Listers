@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BLOCK LISTINGS</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #1a1d29; /* Dark blue background */
+      margin: 0;
+      padding: 20px;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 6rem;
+      margin: 0;
+      text-align: center;
+      font-weight: bold;
+      text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+      color: #ff0;
+      background: linear-gradient(to right, #ff6f00, #ffcc00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    select {
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      background-color: #ff6f00;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 165, 0, 0.7);
+    }
+
+    select:hover {
+      background-color: #ffcc00;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+    }
+
+    .intro-section {
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .movie-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 80px;
+    }
+
+    .movie-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 20px 60px rgba(255, 165, 0, 0.8);
+    }
+
+    img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 15px 0;
+      font-weight: bold;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 5px 0;
+      color: #f3f3f3;
+    }
+
+    #genre-title {
+      font-size: 3rem;
+      text-align: center;
+      margin-top: 50px;
+      font-weight: bold;
+      text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.8);
+    }
+
+    #genre-list {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    /* Search bar styles */
+    .search-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    #search-input {
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-size: 1rem;
+      width: 250px;
+      margin-right: 10px;
+    }
+
+    #search-button {
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      background-color: #ff6f00;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 165, 0, 0.7);
+    }
+
+    #search-button:hover {
+      background-color: #ffcc00;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+    }
+
+    #search-results {
+      display: none;
+      margin-top: 30px;
+    }
+
+    #search-results-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
+      text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search for movies...">
+    <button id="search-button" onclick="searchMovies()">Search</button>
+  </div>
+
+  <div class="intro-section">
+    <h1>BLOCK LISTINGS</h1>
+    <select onchange="navigateToGenre(this.value)">
+      <option value="">Select Genre</option>
+      <option value="horror.html">Horror</option>
+      <option value="action.html">Action</option>
+      <option value="adventure.html">Adventure</option>
+      <option value="comedy.html">Comedy</option>
+      <option value="romance.html">Romance</option>
+      <option value="foreign.html">Foreign</option>
+    </select>
+  </div>
+
+  <h1>New Movies in 2025</h1>
+  <div class="movie-list">
+    <div class="movie-card">
+      <img src="https://assets.onecompiler.app/437fmr2ub/43cprmpv4/SW.jpg" alt="Movie Poster" />
+      <h2>Avengers: Secret Wars</h2>
+      <p>Director: Destin Daniel Cretton</p>
+      <p>Genre: Action, Sci-Fi</p>
+    </div>
+    <div class="movie-card">
+      <img src="https://assets.onecompiler.app/437fmr2ub/43cprmpv4/Moana.jpg" alt="Movie Poster" />
+      <h2>Moana 2</h2>
+      <p>Director: David G. Derrick Jr.</p>
+      <p>Genre: Animation, Adventure</p>
+    </div>
+    <div class="movie-card">
+      <img src="https://tse2.mm.bing.net/th?id=OIP.Gla5yFNRFUxUNyT1e1GORAHaLK&w=1080&h=1629&rs=1&pid=ImgDetMain" alt="Movie Poster" />
+      <h2>Tron: Ares</h2>
+      <p>Director: Joachim Rønning</p>
+      <p>Genre: Sci-Fi, Adventure</p>
+    </div>
+  </div>
+
+  <h1 id="genre-title"></h1>
+  <div id="genre-list" class="movie-list"></div>
+
+  <!-- Search results section -->
+  <div id="search-results">
+    <h1 id="search-results-title">Search Results</h1>
+    <div id="search-results-list" class="movie-list"></div>
+  </div>
+
+  <script>
+    // 2D array containing all movies with their details [title, director, genre, image]
+    const allMovies = [
+      // New 2025 movies
+      ["Avengers: Secret Wars", "Destin Daniel Cretton", "Action, Sci-Fi", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/SW.jpg"],
+      ["Moana 2", "David G. Derrick Jr.", "Animation, Adventure", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/Moana.jpg"],
+      ["Tron: Ares", "Joachim Rønning", "Sci-Fi, Adventure", "https://tse2.mm.bing.net/th?id=OIP.Gla5yFNRFUxUNyT1e1GORAHaLK&w=1080&h=1629&rs=1&pid=ImgDetMain"],
+      
+      // Horror movies
+      ["Scream 7", "Christopher Landon", "Horror", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/S7.png"],
+      ["The Conjuring: Last Rites", "Michael Chaves", "Horror", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/LR.jpg"],
+      ["A Quiet Place: Day One", "Michael Sarnoski", "Horror", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/QP.jpg"],
+      
+      // Action movies
+      ["Deadpool & Wolverine", "Shawn Levy", "Action", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/Dp.jpg"],
+      ["Gladiator 2", "Ridley Scott", "Action", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/Glad.jpg"],
+      ["Bad Boys 4", "Adil & Bilall", "Action", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/bad_boys_4.jpg"],
+      
+      // Adventure movies
+      ["Uncharted", "Ruben Fleischer", "Adventure", "https://m.media-amazon.com/images/M/MV5BMWEwNjhkYzYtNjgzYy00YTY2LThjYWYtYzViMGJkZTI4Y2MyXkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_.jpg"],
+      ["Lost in the Wild", "Jack Simmons", "Adventure", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/t61891al3hm.jpg"],
+      ["Treasure Planet", "Ron Clements", "Adventure", "https://m.media-amazon.com/images/M/MV5BNGI0N2EzZDktNDY3OS00NWFmLTgxZjEtMTc1OTNlMzQxNDZkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg"],
+      
+      // Comedy movies
+      ["Ted 2", "Seth MacFarlane", "Comedy", "https://m.media-amazon.com/images/M/MV5BMjEwMDg3MDk1NF5BMl5BanBnXkFtZTgwNjYyODA1NTE@._V1_.jpg"],
+      ["Thats my boy", "Sean Anders", "Comedy", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/21191295.jpg"],
+      ["Friday", "F. Gary Gray", "Comedy", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/eJ9OvnSuFT3ogYC0YF90j4LxyG7.jpg"],
+      
+      // Romance movies
+      ["Love in Bloom", "Emily Watson", "Romance", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/MV5BOTZlNTRhNDctY2FmYi00NmYyLWEzZTMtNDUxMjMxZWY3ODg3XkEyXkFqcGdeQXVyMDE2MjM2NA@@._V1_.jpg"],
+      ["Heartstrings", "Paul Sanders", "Romance", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/LS.jpg"],
+      ["Forever Yours", "Julia Roberts", "Romance", "https://assets.onecompiler.app/437fmr2ub/43cprmpv4/OIP.jpg"],
+      
+      // Foreign movies
+      ["Parasite", "Bong Joon Ho", "Foreign", "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg"],
+      ["Roma", "Alfonso Cuarón", "Foreign", "https://m.media-amazon.com/images/M/MV5BMTU0OTc3ODk4Ml5BMl5BanBnXkFtZTgwMzM4NzI5NjM@._V1_.jpg"],
+      ["The Platform", "Galder Gaztelu-Urrutia", "Foreign", "https://m.media-amazon.com/images/M/MV5BOTMyYTIyM2MtNjQ2ZC00MWFkLThhYjQtMjhjMGZiMjgwYjM2XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"]
+    ];
+
+    const genres = {
+      horror: [
+        { title: 'Scream 7', director: 'Christopher Landon', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/S7.png' },
+        { title: 'The Conjuring: Last Rites', director: 'Michael Chaves', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/LR.jpg' },
+        { title: 'A Quiet Place: Day One', director: 'Michael Sarnoski', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/QP.jpg' }
+      ],
+      action: [
+        { title: 'Deadpool & Wolverine', director: 'Shawn Levy', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/Dp.jpg' },
+        { title: 'Gladiator 2', director: 'Ridley Scott', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/Glad.jpg' },
+        { title: 'Bad Boys 4', director: 'Adil & Bilall', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/bad_boys_4.jpg' }
+      ],
+      adventure: [
+        { title: 'Uncharted', director: 'Ruben Fleischer', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/UC.png' },
+        { title: 'Lost in the Wild', director: 'Jack Simmons', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/t61891al3hm.jpg' },
+        { title: 'Treasure Planet', director: 'Ron Clements', poster: 'https://m.media-amazon.com/images/M/MV5BNGI0N2EzZDktNDY3OS00NWFmLTgxZjEtMTc1OTNlMzQxNDZkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg' }
+      ],
+      comedy: [
+        { title: 'Ted 2', director: 'Seth MacFarlane', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/ted2.jpg' },
+        { title: 'Thats my boy', director: 'Sean Anders', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/21191295.jpg' },
+        { title: 'Friday', director: 'F. Gary Gray', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/eJ9OvnSuFT3ogYC0YF90j4LxyG7.jpg' }
+      ],
+      romance: [
+        { title: 'Love in Bloom', director: 'Emily Watson', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/MV5BOTZlNTRhNDctY2FmYi00NmYyLWEzZTMtNDUxMjMxZWY3ODg3XkEyXkFqcGdeQXVyMDE2MjM2NA@@._V1_.jpg' },
+        { title: 'Heartstrings', director: 'Paul Sanders', poster: 'https://th.bing.com/th/id/OIP.x2EloG4UfXqRtDZCWBnKbQHaLH?rs=1&pid=ImgDetMain' },
+        { title: 'Forever Yours', director: 'Julia Roberts', poster: 'https://assets.onecompiler.app/437fmr2ub/43cprmpv4/OIP.jpg' }
+      ],
+      foreign: [
+        { title: 'Parasite', director: 'Bong Joon Ho', poster: 'https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg' },
+        { title: 'Roma', director: 'Alfonso Cuarón', poster: 'https://m.media-amazon.com/images/M/MV5BMTU0OTc3ODk4Ml5BMl5BanBnXkFtZTgwMzM4NzI5NjM@._V1_.jpg' },
+        { title: 'The Platform', director: 'Galder Gaztelu-Urrutia', poster: 'https://m.media-amazon.com/images/M/MV5BOTMyYTIyM2MtNjQ2ZC00MWFkLThhYjQtMjhjMGZiMjgwYjM2XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg' }
+      ]
+    };
+
+    function navigateToGenre(page) {
+      if (page) {
+        window.location.href = page;
+      }
+    }
+
+    function loadRandomGenre() {
+      const genreKeys = Object.keys(genres);
+      const randomGenre = genreKeys[Math.floor(Math.random() * genreKeys.length)];
+      const selectedMovies = genres[randomGenre];
+
+      document.getElementById('genre-title').textContent = `Popular ${randomGenre.charAt(0).toUpperCase() + randomGenre.slice(1)} Movies`;
+      const genreList = document.getElementById('genre-list');
+      genreList.innerHTML = '';
+
+      selectedMovies.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+        movieCard.innerHTML = `
+          <img src="${movie.poster}" alt="${movie.title} Poster" />
+          <h2>${movie.title}</h2>
+          <p>Director: ${movie.director}</p>
+        `;
+        genreList.appendChild(movieCard);
+      });
+    }
+
+    function searchMovies() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+      if (!searchTerm) {
+        alert("Please enter a search term");
+        return;
+      }
+      
+      const results = allMovies.filter(movie => 
+        movie[0].toLowerCase().includes(searchTerm) || // Title
+        movie[1].toLowerCase().includes(searchTerm) || // Director
+        movie[2].toLowerCase().includes(searchTerm)   // Genre
+      );
+      
+      displaySearchResults(results);
+    }
+
+    function displaySearchResults(results) {
+      const searchResultsList = document.getElementById('search-results-list');
+      searchResultsList.innerHTML = '';
+      
+      if (results.length === 0) {
+        searchResultsList.innerHTML = '<p style="text-align: center; font-size: 1.5rem; width: 100%;">No movies found matching your search.</p>';
+      } else {
+        results.forEach(movie => {
+          const movieCard = document.createElement('div');
+          movieCard.className = 'movie-card';
+          movieCard.innerHTML = `
+            <img src="${movie[3]}" alt="${movie[0]} Poster" />
+            <h2>${movie[0]}</h2>
+            <p>Director: ${movie[1]}</p>
+            <p>Genre: ${movie[2]}</p>
+          `;
+          searchResultsList.appendChild(movieCard);
+        });
+      }
+      
+      // Show search results section
+      document.getElementById('search-results').style.display = 'block';
+      
+      // Scroll to results
+      document.getElementById('search-results').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Allow search on Enter key press
+    document.getElementById('search-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchMovies();
+      }
+    });
+
+    window.onload = loadRandomGenre;
+  </script>
+</body>
+</html>
